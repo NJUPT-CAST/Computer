@@ -1,0 +1,19 @@
+.clearfix {
+	width: 500px;
+	padding: 5px;
+	margin: 20px;
+}
+.clearfix li {
+	display: inline-block;
+	width: 35px;
+	height: 35px;
+	border-radius: 50%;
+	background-color: green;
+	text-align: center;
+	line-height: 35px;
+	color: white;
+}
+
+.demo * {
+	border: 1px solid blue;
+}

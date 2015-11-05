@@ -1,0 +1,55 @@
+selector {declaration1; declaration2; ... declarationN }
+
+
+/*p {
+    color: red;
+}
+
+.red {
+    color: red;
+}
+
+#red {
+    color: red;
+}*/
+
+
+/*元素*/
+li {
+
+}
+
+/*类*/
+.class {
+
+}
+
+/*id*/
+#id {
+
+}
+
+/*属性*/
+img[alt] {
+
+}
+
+/*后代*/
+li strong {
+
+}
+
+/*子*/
+.father > .children {
+
+}
+
+/*兄弟*/
+.bother + .sister {
+
+}
+
+/*伪类*/
+a:hover
+a:visited
+a:active
