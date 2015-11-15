@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	div {
+		width: 50%;
+		height: 200px;
+		line-height: 200px;
+		background-color: rgb(255,0,0);
+		color: green;
+		font-size: 2em;
+		font-weight: 700;
+		margin: 0 auto;
+		text-align: center;
+		border-radius: 5px;
+	}
+	.part2 {
+		display: none;
+	}
+	@media(max-width: 600px){
+		.part1 {
+			display: none;
+		}
+		.part2 {
+			display: block;
+		}
+	}
+	</style>
+</head>
+<body>
+	<div class="part1">
+		I'm PART1!
+	</div>
+	<div class="part2">
+		I'm PART2!
+	</div>
+</body>
+</html>
