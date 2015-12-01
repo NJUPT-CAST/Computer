@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div class="show" width="200px" height="400px" border="1px solid black">0</div>
+	<div>
+		<button class="num">1</button>
+		<button class="num">2</button>
+		<button class="num">3</button>
+		<button class="num">4</button>
+		<button class="num">5</button>
+		<button class="num">6</button>
+		<button class="num">7</button>
+		<button class="num">8</button>
+		<button class="num">9</button>
+		<button class="num">0</button>
+	</div>
+	<div>
+		<button class="add">+</button>
+		<button class="equal">=</button>
+	</div>
+
+</body>
+<script src="jquery-1.11.3.min.js"></script>
+<script>
+	var show = $(".show"),
+		str = "",
+		number = 0,
+		result = 0;
+	$(".num").each(function(){
+		$(this).on("click",function(){
+			str = str + $(this).html();
+			show.html(str);
+		});
+	});
+	$(".add").on("click",function(){
+		str = str + "+";
+		show.html(str);
+	});
+	$(".equal").on("click",function(){
+		var number = "",
+			numberArray = [];
+
+		number = show.html();
+		console.log(number);
+
+		numberArray = number.split("+");
+		console.log(numberArray);
+
+		str = parseInt(numberArray[0]) + parseInt(numberArray[1]);
+
+		show.html(str);
+	});
+</script>
+</html>
