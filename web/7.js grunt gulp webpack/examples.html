@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+	function example01() {
+		var message;
+
+		console.log(message); //?
+		console.log(age); //?
+	}
+
+	function example02(){
+		var car;
+		alert(typeof car);
+	}
+
+	function example03(){
+		console.log(arguments[0] + " run the function example03");
+	}
+
+	function example04(){
+		var obj = new Object();
+
+		obj.name = "test";
+
+		var a = "anotherObj";
+		a.name = "anotherOne";
+		console.log(a.name);
+	}
+
+	function example05(){
+		var obj1 = new Object();
+		var obj2 = obj1;
+		obj1.name = "obj1's name";
+		console.log(obj2.name);
+	}
+	
+
+	// example01();
+	// example03("I");
+	</script>
+</body>
+</html>
