@@ -134,12 +134,130 @@
 		sayColor.call(window);
 		sayColor.call(o);
 	}
+
+	// 工厂模式
+	function example12(){
+		function createPerson(name, age, job){
+			var o = new Object();
+			o.name = name;
+			o.age = age;
+			o.job = job;
+			o.sayName = function(){
+				alert(this.name);
+			};
+			return o;
+		}
+
+		var person1 = createPerson("a", 29, "bcd");
+		var person2 = createPerson("b", 27, "efg");
+
+		console.log(person1 instanceof createPerson);
+	}
+	// 构造函数模式
+	function example13(){
+		function Person(name, age, job){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.sayName = function(){
+				alert(this.name);
+			}
+		}
+
+		var person1 = new Person("a", 29, "bcd");
+		var person2 = new Person("b", 27, "efg");
+
+		console.log(person1 instanceof Person);
+		console.log(person1.constructor == Person);// constructor构造函数属性
+		console.log(person1.sayName == person2.sayName);
+	}
+	// 原型模式
+	function example14(){
+		function Person(){
+
+		}
+
+		Person.prototype.name = "a";
+		Person.prototype.age = 29;
+		Person.prototype.job = "bcd";
+		Person.prototype.sayName = function(){
+			alert(this.name);
+		};
+
+		// Person.prototype = {
+		// 	constructor: Person,
+		// 	name: "a",
+		// 	age: 29,
+		// 	job: "bcd",
+		// 	sayName: function(){
+		// 		alert(this.name);
+		// 	}
+		// };
+
+		var person1 = new Person();
+		// person1.name = "b";
+		person1.sayName();
+
+		var person2 = new Person();
+		person2.sayName();
+
+		alert(person1.sayName == person2.sayName);
+		// 存在问题 引用类型共享性
+	}
+	// 组合使用构造函数模式和原型模式
+	function example15(){
+		function Person(name, age, job){
+			this.name = name;
+			this.age = age;
+			this.friends = ['f', 'g'];
+		}
+
+		Person.prototype = {
+			constructor: Person,
+			sayName: function(){
+				alert(this.name);
+			}
+		}
+
+		var person1 = new Person("a", 29, "bcd");
+		var person2 = new Person("b", 27, "efg");
+
+		person1.friends.push("Van");
+
+		console.log(person1.friends);
+		console.log(person2.friends);
+		console.log(person1.friends === person2.friends);
+		console.log(person1.sayName === person2.sayName);
+	}
+	// 动态原型模式
+	function example16(){
+		function Person(name, age, job){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+
+			if(typeof this.sayName != "function"){
+				Person.prototype.sayName = function(){
+					alert(this.name);
+				}
+			}
+
+		}
+
+		var friend = new Person("a", 29, "bcd");
+		friend.sayName();
+	}
+
+	function example17(){}
+	function example18(){}
+	function example19(){}
 	
 
 	// example01();
 	// example03("I");
 	// example07();
-	example10();
+	// example10();
+	example14();
 	</script>
 </body>
 </html>
