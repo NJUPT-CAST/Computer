@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+	<script>
+	function example01() {
+		var message;
+
+		console.log(message); //?
+		console.log(age); //?
+	}
+
+	function example02(){
+		var car;
+		alert(typeof car);
+	}
+
+	function example03(){
+		console.log(arguments[0] + " run the function example03");
+	}
+
+	function example04(){
+		var obj = new Object();
+
+		obj.name = "test";
+
+		var a = "anotherObj";
+		a.name = "anotherOne";
+		console.log(a.name);
+	}
+
+	function example05(){
+		var obj1 = new Object();
+		var obj2 = obj1;
+		obj1.name = "obj1's name";
+		console.log(obj2.name);
+	}
+	
+	function example06(){
+		function setName(obj){
+			obj.name = "Nicholas";
+			// obj = new Object();
+			// obj.name = "Greg";
+		}
+
+		var person = new Object();
+		setName(person);
+		alert(person.name);
+
+	}
+
+	function example07(){
+		var s = "Nicholas";
+		var b = true;
+		var i = 22;
+		var u;
+		var n = null;
+		var o = new Object();
+
+		// alert(typeof s);
+		// alert(typeof i);
+		// alert(typeof b);
+		// alert(typeof u);
+		// alert(typeof n);
+		// alert(typeof o);
+
+		alert(n instanceof Object);
+		alert(o instanceof Object);
+
+	}
+
+	function example08(){
+		var color = "blue";
+
+		function changeColor(){
+			var innerColor = "green";
+
+			if(color === "blue"){
+				color = "red";
+			} else {
+				color = "blue";
+			}
+		}
+
+		changeColor();
+		console.log("Color is now " + color);
+		console.log("innerColor is now" + innerColor);
+	}
+
+	function example09(){
+		var person = new Object();
+		var person = {
+			name: "nico"
+		};
+		var person = {
+			"name": "nico"
+		}
+
+		console.log(person.name);
+		console.log(person["name"]);
+	}
+
+	function example10(){
+		window.color = "red";
+		var o = { color: "blue" };
+
+		function sayColor(){
+			alert(this.color);
+		}
+
+		sayColor();
+
+		o.sayColor = sayColor;
+		o.sayColor();
+
+		// 环境不同，函数相同
+	}
+
+	function example11(){
+		window.color = "red";
+		var o = { color: "blue" };
+
+		function sayColor(){
+			alert(this.color);
+		}
+
+		sayColor();
+
+		sayColor.call(this);
+		sayColor.call(window);
+		sayColor.call(o);
+	}
+	
+
+	// example01();
+	// example03("I");
+	// example07();
+	example10();
+	</script>
+</body>
+</html>
