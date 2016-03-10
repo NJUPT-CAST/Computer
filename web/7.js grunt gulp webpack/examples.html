@@ -90,12 +90,56 @@
 		console.log("Color is now " + color);
 		console.log("innerColor is now" + innerColor);
 	}
+
+	function example09(){
+		var person = new Object();
+		var person = {
+			name: "nico"
+		};
+		var person = {
+			"name": "nico"
+		}
+
+		console.log(person.name);
+		console.log(person["name"]);
+	}
+
+	function example10(){
+		window.color = "red";
+		var o = { color: "blue" };
+
+		function sayColor(){
+			alert(this.color);
+		}
+
+		sayColor();
+
+		o.sayColor = sayColor;
+		o.sayColor();
+
+		// 环境不同，函数相同
+	}
+
+	function example11(){
+		window.color = "red";
+		var o = { color: "blue" };
+
+		function sayColor(){
+			alert(this.color);
+		}
+
+		sayColor();
+
+		sayColor.call(this);
+		sayColor.call(window);
+		sayColor.call(o);
+	}
 	
 
 	// example01();
 	// example03("I");
 	// example07();
-	example08();
+	example10();
 	</script>
 </body>
 </html>
