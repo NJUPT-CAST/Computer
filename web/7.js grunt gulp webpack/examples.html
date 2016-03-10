@@ -40,9 +40,62 @@
 		console.log(obj2.name);
 	}
 	
+	function example06(){
+		function setName(obj){
+			obj.name = "Nicholas";
+			// obj = new Object();
+			// obj.name = "Greg";
+		}
+
+		var person = new Object();
+		setName(person);
+		alert(person.name);
+
+	}
+
+	function example07(){
+		var s = "Nicholas";
+		var b = true;
+		var i = 22;
+		var u;
+		var n = null;
+		var o = new Object();
+
+		// alert(typeof s);
+		// alert(typeof i);
+		// alert(typeof b);
+		// alert(typeof u);
+		// alert(typeof n);
+		// alert(typeof o);
+
+		alert(n instanceof Object);
+		alert(o instanceof Object);
+
+	}
+
+	function example08(){
+		var color = "blue";
+
+		function changeColor(){
+			var innerColor = "green";
+
+			if(color === "blue"){
+				color = "red";
+			} else {
+				color = "blue";
+			}
+		}
+
+		changeColor();
+		console.log("Color is now " + color);
+		console.log("innerColor is now" + innerColor);
+	}
+	
 
 	// example01();
 	// example03("I");
+	// example07();
+	example08();
 	</script>
 </body>
 </html>
