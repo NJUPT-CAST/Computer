@@ -10,18 +10,22 @@
 	function example01() {
 		var message;
 
-		console.log(message); //?
-		console.log(age); //?
+		console.log(message); // undefined
+		console.log(age); // error
 	}
+
 
 	function example02(){
-		var car;
-		alert(typeof car);
+		var car = null;
+		console.log(typeof car);
 	}
 
+
 	function example03(){
-		console.log(arguments[0] + " run the function example03");
+		// console.log(a + " and " + b);
+		console.log(arguments[1] + " run the function example03");
 	}
+
 
 	function example04(){
 		var obj = new Object();
@@ -33,25 +37,32 @@
 		console.log(a.name);
 	}
 
+	// example04();
+
 	function example05(){
 		var obj1 = new Object();
 		var obj2 = obj1;
 		obj1.name = "obj1's name";
+		// obj2.name = "....";
 		console.log(obj2.name);
 	}
+
+	// example05();
 	
 	function example06(){
 		function setName(obj){
 			obj.name = "Nicholas";
-			// obj = new Object();
-			// obj.name = "Greg";
+			obj = new Object();
+			obj.name = "Greg";
 		}
 
 		var person = new Object();
 		setName(person);
-		alert(person.name);
+		console.log(person.name);
 
 	}
+
+	// example06();
 
 	function example07(){
 		var s = "Nicholas";
@@ -61,17 +72,19 @@
 		var n = null;
 		var o = new Object();
 
-		// alert(typeof s);
-		// alert(typeof i);
-		// alert(typeof b);
-		// alert(typeof u);
-		// alert(typeof n);
-		// alert(typeof o);
+		// console.log(typeof s);
+		// console.log(typeof b);
+		// console.log(typeof i);
+		// console.log(typeof u);
+		// console.log(typeof n);
+		// console.log(typeof o);
 
-		alert(n instanceof Object);
-		alert(o instanceof Object);
+		console.log(n instanceof Object);
+		console.log(o instanceof Object);
 
 	}
+
+	// example07();
 
 	function example08(){
 		var color = "blue";
@@ -91,6 +104,8 @@
 		console.log("innerColor is now" + innerColor);
 	}
 
+	// example08();	
+
 	function example09(){
 		var person = new Object();
 		var person = {
@@ -106,40 +121,171 @@
 
 	function example10(){
 		window.color = "red";
+		// var color = "green";
 		var o = { color: "blue" };
 
 		function sayColor(){
 			alert(this.color);
 		}
 
-		sayColor();
+		sayColor();//red
 
 		o.sayColor = sayColor;
-		o.sayColor();
+		o.sayColor();//blue
 
 		// 环境不同，函数相同
 	}
+	// example10();
 
 	function example11(){
+
 		window.color = "red";
+		var color = "green";
 		var o = { color: "blue" };
 
 		function sayColor(){
 			alert(this.color);
 		}
 
-		sayColor();
+		// console.log(this)
+		// sayColor();
 
-		sayColor.call(this);
-		sayColor.call(window);
-		sayColor.call(o);
+		// sayColor.call(this);
+		// sayColor.call(window);
+		// sayColor.call(o);
 	}
+	// example11();
+
+	// 工厂模式
+	function example12(){
+
+		function createPerson(name, age, job){
+			var o = new Object();
+			o.name = name;
+			o.age = age;
+			o.job = job;
+			o.sayName = function(){
+				alert(this.name);
+			};
+			return o;
+		}
+
+		var person1 = createPerson("a", 29, "bcd");
+		var person2 = createPerson("b", 27, "efg");
+
+		console.log(person1 instanceof createPerson);
+	}
+
+	// example12();
+
+	// 构造函数模式
+	function example13(){
+
+		function Person(name, age, job){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+			this.sayName = function(){
+				alert(this.name);
+			}
+		}
+
+		var person1 = new Person("a", 29, "bcd");
+		var person2 = new Person("b", 27, "efg");
+
+		// console.log(person1 instanceof Person);
+		// console.log(person1.constructor == Person);// constructor构造函数属性
+		console.log(person1.sayName == person2.sayName);
+	}
+
+	// example13();
+	// 原型模式
+	function example14(){
+		function Person(){
+
+		}
+
+		Person.prototype.name = "a";
+		Person.prototype.age = 29;
+		Person.prototype.job = "bcd";
+		Person.prototype.sayName = function(){
+			alert(this.name);
+		};
+
+		// Person.prototype = {
+		// 	constructor: Person,
+		// 	name: "a",
+		// 	age: 29,
+		// 	job: "bcd",
+		// 	sayName: function(){
+		// 		alert(this.name);
+		// 	}
+		// };
+
+		var person1 = new Person();
+		// person1.name = "b";
+		person1.sayName();
+
+		var person2 = new Person();
+		person2.sayName();
+
+		alert(person1.sayName == person2.sayName);
+		// 存在问题 引用类型共享性
+	}
+	// 组合使用构造函数模式和原型模式
+	function example15(){
+		function Person(name, age, job){
+			this.name = name;
+			this.age = age;
+			this.friends = ['f', 'g'];
+		}
+
+		Person.prototype = {
+			constructor: Person,
+			sayName: function(){
+				alert(this.name);
+			}
+		}
+
+		var person1 = new Person("a", 29, "bcd");
+		var person2 = new Person("b", 27, "efg");
+
+		person1.friends.push("Van");
+
+		console.log(person1.friends);
+		console.log(person2.friends);
+		console.log(person1.friends === person2.friends);
+		console.log(person1.sayName === person2.sayName);
+	}
+	// 动态原型模式
+	function example16(){
+		function Person(name, age, job){
+			this.name = name;
+			this.age = age;
+			this.job = job;
+
+			if(typeof this.sayName != "function"){
+				Person.prototype.sayName = function(){
+					alert(this.name);
+				}
+			}
+
+		}
+
+		var friend = new Person("a", 29, "bcd");
+		friend.sayName();
+	}
+
+	function example17(){}
+	function example18(){}
+	function example19(){}
 	
 
 	// example01();
 	// example03("I");
 	// example07();
-	example10();
+	// example10();
+	// example14();
 	</script>
 </body>
 </html>
