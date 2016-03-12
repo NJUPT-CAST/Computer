@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+	<script>
+		// 基本模式
+		function s1(){
+			function SuperType(){
+				this.property = true;
+			}
+
+			SuperType.prototype.getSuperValue = function(){
+				return this.property;
+			};
+
+			function SubType(){
+				this.subproperty = false;
+			}
+
+			SubType.prototype = new SuperType();
+
+			SubType.prototype.getSubValue = function(){
+				return this.subproperty;
+			};
+
+			var instance = new SubType();
+			alert(instance.getSuperValue);
+
+		}
+
+		// 别忘记默认的原型 Object
+		// 确定原型和实例的关系 instanceof 或 isPrototypeOf(instance)
+		// 存在问题：共享性
+
+		// 借用构造函数
+		function s2(){
+			function SuperType(){
+				this.colors = ["red", "blue", "green"];
+			}
+
+			function SubType(){
+				// 继承了SuperType
+				SuperType.call(this);
+			}
+
+			var instance1 = new SubType();
+			instance1.colors.push("black");
+			console.log(instance1.colors);
+
+			var instance2 = new SubType();
+			console.log(instance2.colors);
+
+
+		}
+	</script>
+</body>
+</html>
