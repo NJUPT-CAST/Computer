@@ -51,9 +51,42 @@
 	}
 
 	// 闭包与变量
+	// 闭包是指有权访问另一个函数作用域中的变量的函数
 	function s4(){
-		
+		function createFunctions(){
+			var result = new Array();
+
+			for(var i = 0;i < 10;i++){
+				result[i] = function(){
+					return i;
+				};
+			}
+			console.log(result);
+			return result;
+		}
+
+		function createFunctionsPro(){
+			var result = new Array();
+
+			for(var i = 0;i < 10;i++){
+				result[i] = (function(num){
+					return function(){
+						return num;
+					};
+				})(i);
+			}
+
+			return result;
+		}
+
+		var arr1 = createFunctions();
+		var arr2 = createFunctionsPro();
+
+		// console.log(arr1);
+		// console.log(arr2);
 	}
+
+	s4();
 	</script>
 </body>
 </html>
